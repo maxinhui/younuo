@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.builbu.business.member.repository.MemberMapper">
+  <resultMap id="BaseResultMap" type="top.builbu.business.member.entity.Member">
+     <id column="id" jdbcType="BIGINT" property="id" />
+     <result column="open_id" jdbcType="VARCHAR" property="openId" />
+     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  
+  <resultMap id="BaseResultMapDTO" type="top.builbu.business.member.dto.MemberDTO">
+     <id column="id" jdbcType="BIGINT" property="id" />
+     <result column="open_id" jdbcType="VARCHAR" property="openId" />
+     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+     id,open_id,create_time
+  </sql>
+<!-- 列表  -->
+  <select id="selectByList"  resultMap="BaseResultMapDTO">
+     select 
+     <include refid="Base_Column_List" />
+     from member where 1=1
+      <if test="dto.id != null">
+      and  id = #{dto.id,jdbcType=BIGINT}
+      </if>
+      <if test="dto.openId != null">
+      and  open_id = #{dto.openId,jdbcType=VARCHAR}
+      </if>
+      <if test="dto.createTime != null">
+      and  create_time = #{dto.createTime,jdbcType=TIMESTAMP}
+      </if>
+     order by id desc limit #{offset},#{limit}
+  </select>
+  
+<!-- 主键查询  -->
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member    
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+
+<!-- 主键删除 --> 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from member
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+<!-- 插入  -->
+  <insert id="insert" parameterType="top.builbu.business.member.entity.Member">
+    insert into member (
+	    id,open_id,create_time
+      )
+    values (
+         #{id,jdbcType=BIGINT}, #{openId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+ 
+<!-- 修改 -->  
+  <update id="updateByPrimaryKey" parameterType="top.builbu.business.member.entity.Member">
+    update member
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+  
+    where id = #{id,jdbcType=BIGINT}
+   
+  </update>
+<!--   批量删除       -->
+  <delete id="deleteByAll" parameterType="java.lang.Long">
+      delete from member where id in
+      <foreach item="id" collection="delids" open="(" separator="," close=")">
+          #{id}
+      </foreach>
+  </delete>  
+  
+  <select id="selectByCount" resultType="java.lang.Integer">
+		select count(1)
+		from member where 1=1
+	      <if test="dto.id != null">
+	      and  id = #{dto.id,jdbcType=BIGINT}
+	      </if>
+	      <if test="dto.openId != null">
+	      and  open_id = #{dto.openId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="dto.createTime != null">
+	      and  create_time = #{dto.createTime,jdbcType=TIMESTAMP}
+	      </if>
+	</select>
+	
+	<select id="selectByOpenId" resultMap="BaseResultMap">
+	  select * from member where open_id=#{openId,jdbcType=VARCHAR} 
+	</select>
+</mapper>

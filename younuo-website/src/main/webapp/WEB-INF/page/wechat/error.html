@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+	<title></title>
+	<style>
+		body{
+			background: #fafafa;
+		}
+		html,body,iframe,h1, h2, h3, h4, h5, h6, p, img,dl, dt, dd, ol, ul, li,video,input,textarea{
+			margin: 0;
+		    padding: 0;
+		    border: 0;
+		}
+		img{
+		    border: 0;
+		    vertical-align: middle;
+		}
+		a{
+		    text-decoration: none;
+		}
+		input{
+		    padding: 0;
+		    border: 0;
+		}
+		input:-moz-placeholder,
+		input::-webkit-input-placeholder,
+		input:-ms-input-placeholder {
+		    color: #999999;
+		}
+		ul,ol{
+		    list-style-type:none;
+		}
+		li{list-style: none;}
+		/* 错误页 */
+		html,body{
+			background: #fafafa;
+			height: 100%;
+			width:100%;
+			position: relative;
+			overflow: hidden;
+		}
+		#error{
+			height: 100%;
+			width:100%;
+			background-color: #fafafa;
+			background: url(${request.contextPath}/ui/img/error.jpg) no-repeat center center;
+			background-size: cover;
+		}
+	</style>
+</head>
+<body>
+	<div id="error"></div>
+</body>
+</html>

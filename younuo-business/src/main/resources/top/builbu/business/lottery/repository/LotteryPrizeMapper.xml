@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.builbu.business.lottery.repository.LotteryPrizeMapper">
+  <resultMap id="BaseResultMap" type="top.builbu.business.lottery.entity.LotteryPrize">
+     <id column="id" jdbcType="INTEGER" property="id" />
+     <result column="prize_name" jdbcType="VARCHAR" property="prizeName" />
+     <result column="open_id" jdbcType="VARCHAR" property="openId" />
+     <result column="lottery_name" jdbcType="VARCHAR" property="lotteryName" />
+     <result column="take_time" jdbcType="TIMESTAMP" property="takeTime" />
+     <result column="dishe_id" jdbcType="INTEGER" property="disheId" />
+  </resultMap>
+  
+  
+  <resultMap id="BaseResultMapDTO" type="top.builbu.business.lottery.dto.LotteryPrizeDTO">
+     <id column="id" jdbcType="INTEGER" property="id" />
+     <result column="prize_name" jdbcType="VARCHAR" property="prizeName" />
+     <result column="open_id" jdbcType="VARCHAR" property="openId" />
+     <result column="lottery_name" jdbcType="VARCHAR" property="lotteryName" />
+     <result column="take_time" jdbcType="TIMESTAMP" property="takeTime" />
+     <result column="dishe_id" jdbcType="INTEGER" property="disheId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+     id,prize_name,open_id,lottery_name,take_time,dishe_id
+  </sql>
+<!-- 列表  -->
+  <select id="selectByList"  resultMap="BaseResultMapDTO">
+     select 
+     <include refid="Base_Column_List" />
+     from lottery_prize where 1=1
+      <if test="dto.id != null">
+      and  id = #{dto.id,jdbcType=INTEGER}
+      </if>
+      <if test="dto.prizeName != null">
+      and  prize_name = #{dto.prizeName,jdbcType=VARCHAR}
+      </if>
+      <if test="dto.openId != null">
+      and  open_id = #{dto.openId,jdbcType=VARCHAR}
+      </if>
+      <if test="dto.lotteryName != null">
+      and  lottery_name = #{dto.lotteryName,jdbcType=VARCHAR}
+      </if>
+      <if test="dto.takeTime != null">
+      and  take_time = #{dto.takeTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="dto.disheId != null">
+      and  dishe_id = #{dto.disheId,jdbcType=INTEGER}
+      </if>
+     order by id desc limit #{offset},#{limit}
+  </select>
+  
+<!-- 主键查询  -->
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_prize    
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+
+<!-- 主键删除 --> 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_prize
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+<!-- 插入  -->
+  <insert id="insert" parameterType="top.builbu.business.lottery.entity.LotteryPrize">
+    insert into lottery_prize (
+	    id,prize_name,open_id,lottery_name,take_time,dishe_id
+      )
+    values (
+         #{id,jdbcType=INTEGER}, #{prizeName,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{lotteryName,jdbcType=VARCHAR}, #{takeTime,jdbcType=TIMESTAMP}, #{disheId,jdbcType=INTEGER}
+      )
+  </insert>
+ 
+<!-- 修改 -->  
+  <update id="updateByPrimaryKey" parameterType="top.builbu.business.lottery.entity.LotteryPrize">
+    update lottery_prize
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="prizeName != null">
+        prize_name = #{prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryName != null">
+        lottery_name = #{lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="takeTime != null">
+        take_time = #{takeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disheId != null">
+        dishe_id = #{disheId,jdbcType=INTEGER}
+      </if>
+    </set>
+  
+    where id = #{id,jdbcType=INTEGER}
+   
+  </update>
+<!--   批量删除       -->
+  <delete id="deleteByAll" parameterType="java.lang.Integer">
+      delete from lottery_prize where id in
+      <foreach item="id" collection="delids" open="(" separator="," close=")">
+          #{id}
+      </foreach>
+  </delete>  
+  
+  <select id="selectByCount" resultType="java.lang.Integer">
+		select count(1)
+		from lottery_prize where 1=1
+	      <if test="dto.id != null">
+	      and  id = #{dto.id,jdbcType=INTEGER}
+	      </if>
+	      <if test="dto.prizeName != null">
+	      and  prize_name = #{dto.prizeName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="dto.openId != null">
+	      and  open_id = #{dto.openId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="dto.lotteryName != null">
+	      and  lottery_name = #{dto.lotteryName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="dto.takeTime != null">
+	      and  take_time = #{dto.takeTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="dto.disheId != null">
+	      and  dishe_id = #{dto.disheId,jdbcType=INTEGER}
+	      </if>
+	</select>
+	
+	
+	<select id="selectByOpenId" resultMap="BaseResultMap">
+	    select 
+    <include refid="Base_Column_List" />
+    from lottery_prize    
+    where open_id = #{openId,jdbcType=VARCHAR} order by take_time desc limit 0,1
+	</select>
+</mapper>

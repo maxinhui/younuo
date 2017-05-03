@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.builbu.business.dishe.repository.DisheMapper">
+  <resultMap id="BaseResultMap" type="top.builbu.business.dishe.entity.Dishe">
+     <id column="id" jdbcType="BIGINT" property="id" />
+     <result column="count" jdbcType="INTEGER" property="count" />
+  </resultMap>
+  
+  
+  <resultMap id="BaseResultMapDTO" type="top.builbu.business.dishe.dto.DisheDTO">
+     <id column="id" jdbcType="BIGINT" property="id" />
+     <result column="count" jdbcType="INTEGER" property="count" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+     id,count
+  </sql>
+<!-- 列表  -->
+  <select id="selectByList"  resultMap="BaseResultMapDTO">
+     select 
+     <include refid="Base_Column_List" />
+     from dishe where 1=1
+      <if test="dto.id != null">
+      and  id = #{dto.id,jdbcType=BIGINT}
+      </if>
+      <if test="dto.count != null">
+      and  count = #{dto.count,jdbcType=INTEGER}
+      </if>
+     order by id desc limit #{offset},#{limit}
+  </select>
+  
+<!-- 主键查询  -->
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dishe    
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+
+<!-- 主键删除 --> 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dishe
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+<!-- 插入  -->
+  <insert id="insert" parameterType="top.builbu.business.dishe.entity.Dishe">
+    insert into dishe (
+	    id,count
+      )
+    values (
+         #{id,jdbcType=BIGINT}, #{count,jdbcType=INTEGER}
+      )
+  </insert>
+ 
+<!-- 修改 -->  
+  <update id="updateByPrimaryKey" parameterType="top.builbu.business.dishe.entity.Dishe">
+    update dishe
+     set
+        count = count+1
+     
+    where id = #{id,jdbcType=BIGINT}
+   
+  </update>
+<!--   批量删除       -->
+  <delete id="deleteByAll" parameterType="java.lang.Long">
+      delete from dishe where id in
+      <foreach item="id" collection="delids" open="(" separator="," close=")">
+          #{id}
+      </foreach>
+  </delete>  
+  
+  <select id="selectByCount" resultType="java.lang.Integer">
+		select count(1)
+		from dishe where 1=1
+	      <if test="dto.id != null">
+	      and  id = #{dto.id,jdbcType=BIGINT}
+	      </if>
+	      <if test="dto.count != null">
+	      and  count = #{dto.count,jdbcType=INTEGER}
+	      </if>
+	</select>
+</mapper>

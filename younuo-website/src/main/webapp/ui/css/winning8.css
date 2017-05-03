@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+*{
+	padding: 0;
+	margin: 0 ;
+}
+
+.page{
+	width: 10rem;
+    
+}
+.page img{
+	width: 10rem;
+	display: block;
+	position: relative;
+}
+.page .small{
+	width: 10rem;
+	position: absolute;
+	top:7.3rem;
+	text-align: center;
+	
+}
+.page .small img{
+	width: 7.4rem;
+	height: 3.6rem;
+	display: inline-block;
+}
+.page .smallText{
+	width: 10rem;
+	height: 3.6rem;
+	position: absolute;
+	top:7.3rem;
+	text-align: center;
+	display: block;
+	/*box-sizing: border-box;*/
+}
+
+.page .smallText a{
+	width: 1rem;
+	height: 2.6rem;
+	color: #f29b53;
+	font-size: .38rem;
+	font-weight: 500;
+	text-decoration: none;
+	display: inline-block;
+	word-wrap: break-word;
+	text-shadow: 5px 5px 5px white;
+	letter-spacing: .3rem;
+	margin: .95rem .32rem 0 0;
+}
+ .page .smallText a:nth-child(1){
+ 	margin-left: 1.5rem;
+ }
+ 
+.page .smallText2{
+	width: 10rem;
+	position: absolute;
+	top:10.756rem;
+	
+	color: #F29B53;
+	text-align: center;
+	display: inline-block;
+	text-shadow: .01rem .01rem .01rem wheat;
+}

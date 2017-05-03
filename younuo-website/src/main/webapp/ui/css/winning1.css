@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+*{
+	padding: 0;
+	margin: 0;
+	
+}
+.page{
+   width: 10rem;
+   box-sizing: border-box;
+   height: 100%;
+   
+}
+.smallImg{
+	width: 10rem;
+    display: block;
+	position: relative;
+
+}
+.page .small{
+	width: 10rem;
+	
+	position: absolute;
+	top:7.3rem;
+	text-align: center;
+	
+}
+.page .small img{
+	width: 7.4rem;
+	height: 4rem;
+	display: inline-block;
+}
+.page .smallText2{
+	width:10rem;
+	position: absolute;
+	top:10.556rem;
+	
+	color: #F29B53;
+	text-align: center;
+	display: inline-block;
+	text-shadow: .01rem .01rem .01rem wheat;
+}

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.builbu.business.lottery.repository.LotteryRuleMapper">
+  <resultMap id="BaseResultMap" type="top.builbu.business.lottery.entity.LotteryRule">
+     <id column="id" jdbcType="INTEGER" property="id" />
+     <result column="prize_name" jdbcType="VARCHAR" property="prizeName" />
+     <result column="odds" jdbcType="INTEGER" property="odds" />
+     <result column="prize_code" jdbcType="VARCHAR" property="prizeCode" />
+     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+     <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+     <result column="valid_flag" jdbcType="CHAR" property="validFlag" />
+  </resultMap>
+  
+  
+  <resultMap id="BaseResultMapDTO" type="top.builbu.business.lottery.dto.LotteryRuleDTO">
+     <id column="id" jdbcType="INTEGER" property="id" />
+     <result column="prize_name" jdbcType="VARCHAR" property="prizeName" />
+     <result column="odds" jdbcType="INTEGER" property="odds" />
+     <result column="prize_code" jdbcType="VARCHAR" property="prizeCode" />
+     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+     <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+     <result column="valid_flag" jdbcType="CHAR" property="validFlag" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+     id,prize_name,odds,prize_code,create_date,modify_date,
+     valid_flag
+  </sql>
+<!-- 列表  -->
+  <select id="selectByList"  resultMap="BaseResultMapDTO">
+     select 
+     <include refid="Base_Column_List" />
+     from lottery_rule where 1=1
+      <if test="dto.id != null">
+      and  id = #{dto.id,jdbcType=INTEGER}
+      </if>
+      <if test="dto.prizeName != null">
+      and  prize_name = #{dto.prizeName,jdbcType=VARCHAR}
+      </if>
+      <if test="dto.odds != null">
+      and  odds = #{dto.odds,jdbcType=INTEGER}
+      </if>
+      <if test="dto.prizeCode != null">
+      and  prize_code = #{dto.prizeCode,jdbcType=VARCHAR}
+      </if>
+      <if test="dto.createDate != null">
+      and  create_date = #{dto.createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="dto.modifyDate != null">
+      and  modify_date = #{dto.modifyDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="dto.validFlag != null">
+      and  valid_flag = #{dto.validFlag,jdbcType=CHAR}
+      </if>
+     order by odds asc limit #{offset},#{limit}
+  </select>
+  
+<!-- 主键查询  -->
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_rule    
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+
+<!-- 主键删除 --> 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+<!-- 插入  -->
+  <insert id="insert" parameterType="top.builbu.business.lottery.entity.LotteryRule">
+    insert into lottery_rule (
+	    id,prize_name,odds,prize_code,create_date,modify_date,
+	    valid_flag
+      )
+    values (
+         #{id,jdbcType=INTEGER}, #{prizeName,jdbcType=VARCHAR}, #{odds,jdbcType=INTEGER}, #{prizeCode,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP},
+         #{validFlag,jdbcType=CHAR}
+      )
+  </insert>
+ 
+<!-- 修改 -->  
+  <update id="updateByPrimaryKey" parameterType="top.builbu.business.lottery.entity.LotteryRule">
+    update lottery_rule
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="prizeName != null">
+        prize_name = #{prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="odds != null">
+        odds = #{odds,jdbcType=INTEGER},
+      </if>
+      <if test="prizeCode != null">
+        prize_code = #{prizeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validFlag != null">
+        valid_flag = #{validFlag,jdbcType=CHAR}
+      </if>
+    </set>
+  
+    where id = #{id,jdbcType=INTEGER}
+   
+  </update>
+<!--   批量删除       -->
+  <delete id="deleteByAll" parameterType="java.lang.Integer">
+      delete from lottery_rule where id in
+      <foreach item="id" collection="delids" open="(" separator="," close=")">
+          #{id}
+      </foreach>
+  </delete>  
+  
+  <select id="selectByCount" resultType="java.lang.Integer">
+		select count(1)
+		from lottery_rule where 1=1
+	      <if test="dto.id != null">
+	      and  id = #{dto.id,jdbcType=INTEGER}
+	      </if>
+	      <if test="dto.prizeName != null">
+	      and  prize_name = #{dto.prizeName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="dto.odds != null">
+	      and  odds = #{dto.odds,jdbcType=INTEGER}
+	      </if>
+	      <if test="dto.prizeCode != null">
+	      and  prize_code = #{dto.prizeCode,jdbcType=VARCHAR}
+	      </if>
+	      <if test="dto.createDate != null">
+	      and  create_date = #{dto.createDate,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="dto.modifyDate != null">
+	      and  modify_date = #{dto.modifyDate,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="dto.validFlag != null">
+	      and  valid_flag = #{dto.validFlag,jdbcType=CHAR}
+	      </if>
+	</select>
+</mapper>
