@@ -13,13 +13,13 @@
 }
 .smallImg{
 	width: 10rem;
-    display: block;
+    
 	position: relative;
 
 }
 .page .small{
 	width: 10rem;
-	
+
 	position: absolute;
 	top:7.3rem;
 	text-align: center;
@@ -30,11 +30,11 @@
 	height: 4rem;
 	display: inline-block;
 }
-.page .smallText2{
-	width:10rem;
+ .page .smallText2{
+ 	width: 10rem;
 	position: absolute;
 	top:10.556rem;
-	
+/*	left: 5.098rem;*/
 	color: #F29B53;
 	text-align: center;
 	display: inline-block;

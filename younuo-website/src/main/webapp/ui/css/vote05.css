@@ -71,25 +71,26 @@ animation: myfirst 5s;
 
 @keyframes myfirst
 {
-from {color:lightgoldenrodyellow;}
+from {color:#FFFFCC;}
 to {color: #B04533;}
 }
 
 @-moz-keyframes myfirst /* Firefox */
 {
-from {color:lightgoldenrodyellow;}
+from {color:#FFFFCC;}
 to {color: #B04533;}
 }
 
 @-webkit-keyframes myfirst /* Safari 和 Chrome */
 {
-from {color:lightgoldenrodyellow;}
+from {color:#FFFFCC}
 to {color: #B04533;}
 }
 
+
 @-o-keyframes myfirst /* Opera */
 {
-from {color:lightgoldenrodyellow;}
+from {color:#FFFFCC}
 to {color: #B04533;}
 }
 

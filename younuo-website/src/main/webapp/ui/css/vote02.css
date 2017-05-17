@@ -1,0 +1,116 @@
+@charset "utf-8";
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.page {
+	width: 10rem;
+	text-align: center;
+}
+
+.page .BGlog {
+	width: 10rem;
+	position: relative;
+}
+
+.page .contentBoxs {
+	width: 8rem;
+	box-sizing: border-box;
+	text-align: left;
+	position: absolute;
+	top: 3.8rem;
+	left: 1.2rem;
+}
+
+.contentBoxs .small {
+	width: 8rem;
+	height: 1.25rem;
+	font-size: .2rem;
+	text-decoration: none;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+.contentBoxs .small .smallText {
+	list-style: none;
+	padding-left: 1.45rem;
+	color: #595757;
+	/*padding-bottom: 0.056rem;*/
+}
+
+.contentBoxs .small2 {
+	width: 8rem;
+	/*padding: .2rem 0;*/
+	color: #595757;
+	font-family: "微软雅黑";
+	text-align: right;
+	font-size: .2rem;
+	margin-top: 0.056rem;
+	text-shadow: .01rem .01rem .01rem #B04533;
+}
+
+
+/*修改开始*/
+
+.contentBoxs span {
+	padding-right: .2rem;
+	animation: myfirst 5s;
+	-moz-animation: myfirst 5s;
+	/* Firefox */
+	-webkit-animation: myfirst 5s;
+	/* Safari 和 Chrome */
+	-o-animation: myfirst 5s;
+	/* Opera */
+}
+
+.smallSB {
+	height: 0.9rem !important;
+}
+
+@keyframes myfirst {
+	from {
+		color: #FFFFCC;
+	}
+	to {
+		color: #B04533;
+	}
+}
+
+@-moz-keyframes myfirst
+/* Firefox */
+
+{
+	from {
+		color: #FFFFCC;
+	}
+	to {
+		color: #B04533;
+	}
+}
+
+@-webkit-keyframes myfirst
+/* Safari 和 Chrome */
+
+{
+	from {
+		color: #FFFFCC;
+	}
+	to {
+		color: #B04533;
+	}
+}
+
+@-o-keyframes myfirst
+/* Opera */
+
+{
+	from {
+		color: #FFFFCC;
+	}
+	to {
+		color: #B04533;
+	}
+}

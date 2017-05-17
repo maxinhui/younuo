@@ -187,7 +187,7 @@ public class WxConfigController {
 		
 		if(result.isSuccess()){
 			session.setAttribute("yn_open_id", openIdResult.getOpenid());
-			return "/wechat/vote01";
+			return "/wechat/vote02";
 		}else if(!result.isSuccess()&&null==prize){
 			return "/wechat/error";
 		}else{
